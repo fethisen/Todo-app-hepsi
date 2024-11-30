@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  couchbase:
+    image: couchbase:community
+    container_name: couchbase
+    ports:
+      - "8091:8091"  # Web arayüzü
+      - "8092:8092"  # Query Service
+      - "8093:8093"  # Index Service
+      - "8094:8094"  # Analytics Service
+      - "8095:8095"  # Eventing Service
+      - "11210:11210" # Data Service
+    environment:
+      - COUCHBASE_ADMINISTRATOR_USERNAME=admin
+      - COUCHBASE_ADMINISTRATOR_PASSWORD=password
+    volumes:
+      - couchbase_data:/opt/couchbase/var
+
+volumes:
+  couchbase_data:

@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  couchbase:
+    connection-string: couchbase://127.0.0.1
+    username: fethi
+    password: 112233
+    bucket: user_bucket
+  data:
+    couchbase:
+      auto-index: true
+
+security:
+  authentication:
+    jwt:
+      base64-secret: NGY5MjNlMjFkMWQ4MjQ0NWQ1ODhjZTA4ZjIxZjUyMGM5YzRjNDEwMmE4MzUwODFhNzNjNzE1YjA5OWUxZDZkZWU2ZWE5NDRhODhiYTIwNzc1MGZkNDk5ZmJmMTUzYmU0ODY1YzA1MjIxMzcwZWZiMmI0NDMxOTQ0NGY4MDQ4Y2Q=
+      # type of below values are seconds
+      token-validity-in-seconds: 28800 #8 hours
