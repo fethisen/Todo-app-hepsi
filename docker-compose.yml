@@ -16,6 +16,15 @@ services:
       - COUCHBASE_ADMINISTRATOR_PASSWORD=password
     volumes:
       - couchbase_data:/opt/couchbase/var
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - couchbase
+
 
 volumes:
   couchbase_data:
