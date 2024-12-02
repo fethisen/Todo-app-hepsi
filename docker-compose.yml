@@ -1,30 +1,31 @@
-version: '3.9'
-
+version: '3.8'
 services:
-  couchbase:
-    image: couchbase:community
-    container_name: couchbase
-    ports:
-      - "8091:8091"  # Web arayüzü
-      - "8092:8092"  # Query Service
-      - "8093:8093"  # Index Service
-      - "8094:8094"  # Analytics Service
-      - "8095:8095"  # Eventing Service
-      - "11210:11210" # Data Service
-    environment:
-      - COUCHBASE_ADMINISTRATOR_USERNAME=admin
-      - COUCHBASE_ADMINISTRATOR_PASSWORD=password
-    volumes:
-      - couchbase_data:/opt/couchbase/var
   app:
     build:
       context: .
-      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     depends_on:
       - couchbase
+    environment:
+      - COUCHBASE_CONNECTION_STRING=couchbase://couchbase
+      - COUCHBASE_USERNAME=fethi
+      - COUCHBASE_PASSWORD=112233
+      - COUCHBASE_BUCKET_NAME=user_bucket
 
+  couchbase:
+    build:
+      context: ./couchbase
+    ports:
+      - "8091:8091" # Web arayüzü
+      - "8092:8092" # Query Service
+      - "8093:8093" # Index Service
+      - "11210:11210" # Data Service
+    volumes:
+      - couchbase_data:/opt/couchbase/var
+    environment:
+      COUCHBASE_ADMINISTRATOR_USERNAME: admin
+      COUCHBASE_ADMINISTRATOR_PASSWORD: password
 
 volumes:
   couchbase_data:
