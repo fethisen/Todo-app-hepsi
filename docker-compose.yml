@@ -29,10 +29,10 @@ services:
       COUCHBASE_ADMINISTRATOR_PASSWORD: password
 
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:8091" ]
+      test: ["CMD", "curl", "-f", "http://localhost:8091/pools"]
       interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 10
 
 volumes:
   couchbase_data:
