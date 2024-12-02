@@ -37,4 +37,10 @@ public class TodoController {
         todoService.deleteTodo(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/deneme")
+    public ResponseEntity<String> getUserTodos(){
+        String a = "Hello fethi";
+        return ResponseEntity.ok(a);
+    }
 }
