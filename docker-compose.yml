@@ -6,7 +6,8 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - couchbase
+      couchbase:
+        condition: service_healthy
     environment:
       - COUCHBASE_CONNECTION_STRING=couchbase://couchbase
       - COUCHBASE_USERNAME=fethi
@@ -26,6 +27,12 @@ services:
     environment:
       COUCHBASE_ADMINISTRATOR_USERNAME: admin
       COUCHBASE_ADMINISTRATOR_PASSWORD: password
+
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8091" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
 
 volumes:
   couchbase_data:
