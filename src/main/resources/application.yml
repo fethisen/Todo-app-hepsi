@@ -3,7 +3,7 @@ server:
 
 spring:
   couchbase:
-    connection-string: ${COUCHBASE_CONNECTION_STRING:couchbase://couchbase}
+    connection-string: ${COUCHBASE_CONNECTION_STRING:couchbase://127.0.0.1}
     username: ${COUCHBASE_USERNAME:fethi}
     password: ${COUCHBASE_PASSWORD:112233}
     bucket: ${COUCHBASE_BUCKET_NAME:user_bucket}
