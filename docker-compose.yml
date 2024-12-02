@@ -13,6 +13,8 @@ services:
       - COUCHBASE_USERNAME=fethi
       - COUCHBASE_PASSWORD=112233
       - COUCHBASE_BUCKET_NAME=user_bucket
+    networks:
+      - app-network
 
   couchbase:
     build:
@@ -33,6 +35,12 @@ services:
       interval: 10s
       timeout: 10s
       retries: 10
+    networks:
+      - app-network
 
 volumes:
   couchbase_data:
+
+networks:
+  app-network:
+    driver: bridge
